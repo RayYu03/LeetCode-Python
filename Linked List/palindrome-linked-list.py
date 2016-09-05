@@ -38,4 +38,3 @@ class Solution(object):
             tail = tail.next
 
         return is_palindrome
-
