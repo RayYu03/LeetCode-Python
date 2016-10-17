@@ -1,4 +1,3 @@
-
 # Time:  O(k * C(n, k))
 # Space: O(k)
 #
@@ -34,14 +33,12 @@ class Solution:
         while start < len(candidates) and candidates[start] <= target:
             if prev != candidates[start]:
                 intermediate.append(candidates[start])
-                print intermediate
                 self.combinationSumRecu(candidates, result, start + 1, intermediate, target - candidates[start])
                 intermediate.pop()
                 prev = candidates[start]
-                print prev
             start += 1
-            
+
 if __name__ == "__main__":
-    candidates, target = [10, 1, 2, 7, 6, 1, 5], 8
+    candidates, target = [10, 1, 2, 7, 6, 1, 5],12
     result = Solution().combinationSum2(candidates, target)
     print result
