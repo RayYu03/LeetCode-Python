@@ -15,17 +15,11 @@ class Solution:
         one, two, three = 0, 0, 0
         for x in A:
             three = two & x
-            print bin(three)
             two |= one & x
-            print bin(two)
             one |= x
-            print bin(one)
-
 
             two &= ~three
-            print bin(two)
             one &= ~three
-            print bin(one)
 
             print
         return one
