@@ -27,3 +27,13 @@ class Solution:
             else:
                 length += 1
         return length
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2:
+    def lengthOfLastWord(self, s):
+        """
+        :type s:str
+        :rtype: int
+        """
+        return len(s.strip().split(" ")[-1])
