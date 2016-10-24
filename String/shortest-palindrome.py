@@ -41,5 +41,46 @@ class Solution(object):
             i = prefix[i - 1]
         return s[i:][::-1] + s
 
+# Time:  O(n)
+# Space: O(n)
+# Manacher's Algorithm
+class Solution2(object):
+    def shortestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def preProcess(s):
+            if not s:
+                return ['^', '$']
+            string = ['^']
+            for c in s:
+                string +=  ['#', c]
+            string += ['#', '$']
+            return string
+
+        string = preProcess(s)
+        palindrome = [0] * len(string)
+        center, right = 0, 0
+
+        for i in xrange(1, len(string) - 1):
+            if right > i:
+                palindrome[i] = min(right - i, palindrome[2 * center - i])
+            else:
+                palindrome[i] = 0
+
+            while string[i + 1 + palindrome[i]] == string[i - 1 - palindrome[i]]:
+                palindrome[i] += 1
+
+            if i + palindrome[i] > right:
+                center, right = i, i + palindrome[i]
+
+        max_len = 0
+        for i in xrange(1, len(string) - 1):
+            if i - palindrome[i] == 1:
+                max_len = palindrome[i]
+        print max_len
+        return s[len(s)-1:max_len-1:-1] + s
+
 if __name__ == "__main__":
-    print Solution().shortestPalindrome("c")
+    print Solution2().shortestPalindrome("aacecaaa")
