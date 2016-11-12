@@ -28,7 +28,7 @@ class Solution(object):
                 nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
             else:
                 i += 1
-                
+
         for i in xrange(len(nums)):
             if i != nums[i] - 1:
                 result.append(nums[i])
